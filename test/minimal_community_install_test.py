@@ -22,7 +22,7 @@ class MinimalCommunityInstallTest(unittest.TestCase):
         cls.__LOGGER.addHandler(streamHandler)
         cls.__LOGGER.info("Logger was set")
 
-
+    @unittest.skip('x')
     def test_minimial_community_install(self):
 
         resultdir = os.path.join( '/kb/module/work', str(uuid.uuid4().hex))

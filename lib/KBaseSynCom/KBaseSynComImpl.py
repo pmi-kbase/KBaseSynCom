@@ -4,6 +4,9 @@ import logging
 import os
 
 from installed_clients.KBaseReportClient import KBaseReport
+from .Utils.PFAMUtils import PFAMUtils
+from .Utils.MinimalCommunityUtils import MinimalCommunityUtils
+import uuid
 #END_HEADER
 
 
@@ -37,6 +40,8 @@ class KBaseSynCom:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
+  
+        self.ws_url = config['workspace-url']
         #END_CONSTRUCTOR
         pass
 
@@ -51,9 +56,44 @@ class KBaseSynCom:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_KBaseSynCom
+      
+ 
+        metagenome_pfam_annotation_file_list = params['metagenome_pfam_annotation_files']
+        genome_domain_annotation_object_list = params['genome_domain_annotation_objects']
+        iteration = str(params['iteration'])
+        #TODO: change randomname to uui
+        results_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
+
+        #TODO: change to if dir exists
+
+        config ={'ws_url': self.ws_url}
+        PFU = PFAMUtils(config)
+        os.makedirs (results_dir) 
+        merged_metagenome_pfam_file_path = os.path.join(results_dir, "merged_metagenome_pfam_file.tsv")
+        merged_genome_pfam_annotation_file_path = os.path.join(results_dir, "merged_genome_pfam_file.tsv")
+
+        updated_merged_metagenome_pfam_file_path = os.path.join(results_dir, "updated_merged_metagenome_pfam_file.tsv")
+        updated_merged_genome_pfam_annotation_file_path = os.path.join(results_dir, "updated_merged_genome_pfam_file.tsv")
+        
+
+        mpath =PFU.merged_pfam_workflow(metagenome_pfam_annotation_file_list,merged_metagenome_pfam_file_path)
+        gpath = PFU.merged_domain_annotation_workflow(genome_domain_annotation_object_list, merged_genome_pfam_annotation_file_path)
+
+        updated_mpath, updated_gpath = PFU.get_updated_files_with_common_pfams(merged_metagenome_pfam_file_path,
+                                                                               merged_genome_pfam_annotation_file_path,
+                                                                               updated_merged_metagenome_pfam_file_path,
+                                                                               updated_merged_genome_pfam_annotation_file_path)
+               
+        MCU = MinimalCommunityUtils()
+       
+        info = MCU.run_minimal_community_workflow(results_dir, updated_mpath, updated_gpath, iteration) 
+
+        print (info)
+        
+
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['parameter_1']},
+                                                'text_message': "successful run"},
                                                 'workspace_name': params['workspace_name']})
         output = {
             'report_name': report_info['name'],

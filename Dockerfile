@@ -19,7 +19,7 @@ RUN conda create -y -n syncom --channel=conda-forge --channel=ccb-sb  r-base=3.5
 
 COPY ./requirements.kb_sdk.txt /kb/module/requirements.kb_sdk.txt
 RUN pip install -r requirements.kb_sdk.txt
-
+RUN pip install pandas
 # -----------------------------------------
 
 COPY ./ /kb/module
