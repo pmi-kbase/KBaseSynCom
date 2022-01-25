@@ -3,8 +3,8 @@
 #
 name: Get minimal synthetic community
 tooltip: |
-    Obtains the minimal synthetic communty from a Metagenome with PFam Annotation 
-     screenshots: []
+    Obtains the minimal synthetic communty from a Metagenome with Pfam Annotation 
+screenshots: []
 
 icon: null
 
