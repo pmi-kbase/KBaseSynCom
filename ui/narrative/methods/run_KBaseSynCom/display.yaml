@@ -40,7 +40,6 @@ parameters :
         ui-name : |
             evalue-cutoff
         short-hint : |
-
-    description : |
-    <p>This method will find the minimal cynthetic community retaining the as much function as possible from the provided metagenome.
+description : |
+    <p>This method will find the minimal cynthetic community retaining the as much function as possible from the provided metagenome.</p>
     
