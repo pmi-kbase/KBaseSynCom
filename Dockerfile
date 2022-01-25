@@ -7,7 +7,7 @@ MAINTAINER KBase Developer
 # installation scripts.
 
 RUN apt-get update
-RUN apt-get upgrade -y
+#RUN apt-get upgrade -y
 RUN mkdir -p /kb/module/work
 WORKDIR /kb/module
 
