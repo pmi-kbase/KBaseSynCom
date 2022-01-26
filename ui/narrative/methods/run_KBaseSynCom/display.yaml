@@ -36,9 +36,9 @@ parameters :
         ui-name : |
             Domain annotations 
         short-hint : |
-    evalue-cutoff :
+    iteration :
         ui-name : |
-            evalue-cutoff
+           iterations
         short-hint : |
 description : |
     <p>This method will find the minimal cynthetic community retaining the as much function as possible from the provided metagenome.</p>

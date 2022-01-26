@@ -46,15 +46,15 @@
                 "valid_ws_types": [ "KBaseGeneFamilies.DomainAnnotation" ]
             }
         },{
-	    "id": "evalue-cutoff",
+	    "id": "iteration",
 	    "optional": false,
 	    "advanced": false,
 	    "allow_multiple": false,
-	    "default_values": [ "" ],
+	    "default_values": [ "10" ],
 	    "field_type": "text",
 	    "text_options": {
-		"validate_as": "float",
-		"min_integer" : 0.001
+		"validate_as": "int",
+		"min_integer" : 4
 	   }
 
        }
@@ -78,8 +78,8 @@
                     "input_parameter": "genome_domain_annotation_objects",
                     "target_property": "genome_domain_annotation_objects"
                 },{
-		    "input_parameter": "evalue-cutoff",
-		    "target_property": "evalue-cutoff"
+		    "input_parameter": "iteration",
+		    "target_property": "iteration"
 		}
             ],
             "output_mapping": [
