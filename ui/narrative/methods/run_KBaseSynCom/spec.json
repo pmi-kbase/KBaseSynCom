@@ -12,7 +12,7 @@
     },
     "parameters": [ 
 		{
-			"id": "metagenome_pfam_output_files",
+			"id": "metagenome_pfam_annotation_files",
 			"optional": false,
 			"advanced": false,
 			"allow_multiple": true,
@@ -36,7 +36,7 @@
 				}
 		},
         {
-            "id": "domain_annotation_list",
+            "id": "genome_domain_annotation_objects",
             "optional": false,
             "advanced": false,
             "allow_multiple": true,
@@ -72,11 +72,11 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "metagenome_pfam_output_files",
-                    "target_property": "metagenome_pfam_output_files"
+                    "input_parameter": "metagenome_pfam_annotation_files",
+                    "target_property": "metagenome_pfam_annotation_files"
                 },{
-                    "input_parameter": "domain_annotation_list",
-                    "target_property": "domain_annotation_list"
+                    "input_parameter": "genome_domain_annotation_objects",
+                    "target_property": "genome_domain_annotation_objects"
                 },{
 		    "input_parameter": "evalue-cutoff",
 		    "target_property": "evalue-cutoff"
