@@ -6,6 +6,7 @@ import os
 from installed_clients.KBaseReportClient import KBaseReport
 from .Utils.PFAMUtils import PFAMUtils
 from .Utils.MinimalCommunityUtils import MinimalCommunityUtils
+from .Utils.htmlreportutils import htmlreportutils
 import uuid
 #END_HEADER
 
@@ -42,6 +43,8 @@ class KBaseSynCom:
                             level=logging.INFO)
   
         self.ws_url = config['workspace-url']
+        self.hr = htmlreportutils()
+
         #END_CONSTRUCTOR
         pass
 
@@ -66,6 +69,8 @@ class KBaseSynCom:
 
         #TODO: change to if dir exists
 
+        workspace = params['workspace_name']
+
         config ={'ws_url': self.ws_url}
         PFU = PFAMUtils(config)
         os.makedirs (results_dir) 
@@ -88,17 +93,23 @@ class KBaseSynCom:
        
         info = MCU.run_minimal_community_workflow(results_dir, updated_mpath, updated_gpath, iteration) 
 
+        created_objects=[]
+        output = self.hr.formathtmlreport(results_dir,
+                                            workspace,
+                                            created_objects)
+        print (output)
         print (info)
         
+        
 
-        report = KBaseReport(self.callback_url)
-        report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': "successful run"},
-                                                'workspace_name': params['workspace_name']})
-        output = {
-            'report_name': report_info['name'],
-            'report_ref': report_info['ref'],
-        }
+       # report = KBaseReport(self.callback_url)
+       # report_info = report.create({'report': {'objects_created':[],
+      #                                          'text_message': "successful run"},
+      #                                          'workspace_name': params['workspace_name']})
+       # output = {
+       #     'report_name': report_info['name'],
+       #     'report_ref': report_info['ref'],
+       # }
         #END run_KBaseSynCom
 
         # At some point might do deeper type checking...

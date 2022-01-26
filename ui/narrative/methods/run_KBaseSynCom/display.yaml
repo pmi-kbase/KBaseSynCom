@@ -27,12 +27,12 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    metagenome_annotation :
+    metagenome_pfam_output_files :
         ui-name : |
             Metagenome PFAM Annotation
         short-hint : |
             The metagenome whose functions should be retained in the synthetic community
-    Domain_annotation :
+    domain_annotation_list :
         ui-name : |
             Domain annotations 
         short-hint : |

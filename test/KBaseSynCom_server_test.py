@@ -65,8 +65,8 @@ class KBaseSynComTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methodsa
-        metagenome_pfam_output_files = ["/kb/module/test/metagenome_pfams/metagenome1.faa.pfam", 
-                                       "/kb/module/test/metagenome_pfams/metagenome1_copy.faa.pfam"]
+        metagenome_pfam_output_files = ["/kb/module/test/metagenome_pfams/PMI_metgenome_1_PFAM", 
+                                       "/kb/module/test/metagenome_pfams/PMI_metgenome_2_PFAM"]
         #domain_annotation_list = ['63727/187/1', '63727/185/1', '63727/183/1']
         domain_annotation_list = ['63727/3/1',  '63727/5/1', '63727/7/1', '63727/9/1',
                                  '63727/11/1',  '63727/13/1', '63727/15/1',
@@ -169,7 +169,7 @@ class KBaseSynComTest(unittest.TestCase):
          '63727/219/1',
          '63727/221/1',
          '63727/223/1']
-        ret = self.serviceImpl.run_KBaseSynCom(self.ctx, {'workspace_name': self.wsName,
+        ret = self.serviceImpl.run_KBaseSynCom(self.ctx, {'workspace_name':"pranjan77:narrative_1642294515776",
                                                         'metagenome_pfam_annotation_files': metagenome_pfam_output_files,
                                                         'genome_domain_annotation_objects': domain_annotation_list,
                                                         'iteration':10})

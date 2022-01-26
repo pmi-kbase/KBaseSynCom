@@ -1,7 +1,8 @@
 {
     "ver": "0.0.1",
     "authors": [
-        "alexismarsh"
+        "alexismarsh",
+        "pranjan77"
     ],
     "contact": "https://kbase.us/contact-us/",
     "categories": ["active"],
@@ -10,19 +11,32 @@
         "output": "no-display"
     },
     "parameters": [ 
+		{
+			"id": "metagenome_pfam_output_files",
+			"optional": false,
+			"advanced": false,
+			"allow_multiple": true,
+			"default_values": [ ],
+			"field_type": "dropdown",
+				"dropdown_options": {
+					"options": [
+						{
+							"value": "/kb/module/test/metagenome_pfams/PMI_metgenome_1_PFAM",
+							"display": "PMI_metgenome_1_PFAM",
+					    	"id": "PMI_metgenome_1_PFAM",
+							"ui-name": "PMI_metgenome_1_PFAM"
+						},
+						{
+							"value": "/kb/module/test/metagenome_pfams/PMI_metgenome_2_PFAM",
+							"display": "PMI_metgenome_2_PFAM",
+							"id": "PMI_metgenome_2_PFAM",
+							"ui-name": "PMI_metgenome_2_PFAM"
+						}
+					]
+				}
+		},
         {
-            "id": "metagenome_annotation",
-            "optional": false,
-            "advanced": false,
-            "allow_multiple": true,
-            "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ "KBaseMetagenomes.AnnotatedMetagenomeAssembly" ]
-            }
-        },
-        {
-            "id": "Domain_annotation",
+            "id": "domain_annotation_list",
             "optional": false,
             "advanced": false,
             "allow_multiple": true,
@@ -48,8 +62,8 @@
     "behavior": {
         "service-mapping": {
             "url": "",
-            "name":"minimal_synthetic_community",
-            "method": "run_minimal_synthetic_community",
+            "name":"KBaseSynCom",
+            "method": "run_KBaseSynCom",
             "input_mapping": [
                 {
                     "narrative_system_variable": "workspace",
@@ -58,11 +72,11 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "metagenome_annotation",
-                    "target_property": "metagenome_annotation"
+                    "input_parameter": "metagenome_pfam_output_files",
+                    "target_property": "metagenome_pfam_output_files"
                 },{
-                    "input_parameter": "Domain_annotation",
-                    "target_property": "Domain_annotation"
+                    "input_parameter": "domain_annotation_list",
+                    "target_property": "domain_annotation_list"
                 },{
 		    "input_parameter": "evalue-cutoff",
 		    "target_property": "evalue-cutoff"
