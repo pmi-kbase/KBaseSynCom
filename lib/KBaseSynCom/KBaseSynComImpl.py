@@ -61,7 +61,7 @@ class KBaseSynCom:
         # return variables are: output
         #BEGIN run_KBaseSynCom
       
- 
+        print (params) 
         metagenome_pfam_annotation_file_list = params['metagenome_pfam_annotation_files']
         genome_domain_annotation_object_list = params['genome_domain_annotation_objects']
         iteration = str(params['iteration'])

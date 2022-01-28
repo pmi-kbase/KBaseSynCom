@@ -45,7 +45,21 @@
             "text_options": {
                 "valid_ws_types": [ "KBaseGeneFamilies.DomainAnnotation" ]
             }
-        },{
+        },
+    
+        {
+            "id": "to_delete",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": true,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [ "KBaseSearch.GenomeSet" ]
+            }
+        },
+
+      {
 	    "id": "iteration",
 	    "optional": false,
 	    "advanced": false,
@@ -71,7 +85,17 @@
                 },{
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
-                },{
+                },
+                
+          {"input_parameter": "to_delete",
+          "generated_value": {
+            "prefix": "genomeset_"
+          },
+          "target_property": "genomeset_ref",
+          "target_type_transform": "ref"
+        },
+
+                {
                     "input_parameter": "metagenome_pfam_annotation_files",
                     "target_property": "metagenome_pfam_annotation_files"
                 },{
