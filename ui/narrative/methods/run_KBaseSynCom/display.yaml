@@ -42,7 +42,7 @@ parameters :
         short-hint : |
     to_delete :
         ui-name : |
-           iterations
+          genomeset
         short-hint : |
 
 
