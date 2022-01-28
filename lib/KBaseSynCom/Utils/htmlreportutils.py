@@ -60,7 +60,7 @@ class htmlreportutils:
         
         f = open(index,'a')
         message = """<html>
-            <p><img src="Pfam_coverage_plot.jpg" alt="pfam plot" /></p>
+            <p><img src="Pfam_coverage_plot.jpg" alt="pfam plot" width="100%" height="600px" /></p>
             <p><iframe src="mbarc_mimic_coverage_ncbiRef_2016_kneePoint.pdf" width="100%" height="1000px" /></p>
             <a href="updated_merged_genome_pfam_file.tsv">Updated Merged Genome Pfam</a> 
             <a href="updated_merged_metagenome_pfam_file.tsv">Updated Merged Metagenome Pfam</a> 

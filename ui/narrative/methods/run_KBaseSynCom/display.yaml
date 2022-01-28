@@ -1,7 +1,7 @@
 #
 # define display information
 #
-name: Get minimal synthetic community
+name: Generate minimal microbial consortia similar to metagenome
 tooltip: |
     Obtains the minimal synthetic communty from a Metagenome with Pfam Annotation 
 screenshots: []
