@@ -7,6 +7,7 @@ from installed_clients.KBaseReportClient import KBaseReport
 from .Utils.PFAMUtils import PFAMUtils
 from .Utils.MinimalCommunityUtils import MinimalCommunityUtils
 from .Utils.htmlreportutils import htmlreportutils
+from .Utils.GenomeSetsfromMimic import GenomeSetsfromMimic
 import uuid
 #END_HEADER
 
@@ -72,6 +73,7 @@ class KBaseSynCom:
         workspace = params['workspace_name']
 
         config ={'ws_url': self.ws_url}
+        config ['workspace'] = params['workspace_name']
         PFU = PFAMUtils(config)
         os.makedirs (results_dir) 
         merged_metagenome_pfam_file_path = os.path.join(results_dir, "merged_metagenome_pfam_file.tsv")
@@ -88,17 +90,42 @@ class KBaseSynCom:
                                                                                merged_genome_pfam_annotation_file_path,
                                                                                updated_merged_metagenome_pfam_file_path,
                                                                                updated_merged_genome_pfam_annotation_file_path)
-               
+        updated_mpath_file = updated_mpath.split("/")[-1] 
+        updated_gpath_file = updated_gpath.split("/")[-1] 
+      
         MCU = MinimalCommunityUtils()
        
-        info = MCU.run_minimal_community_workflow(results_dir, updated_mpath, updated_gpath, iteration) 
+        mcuinfo = MCU.run_minimal_community_workflow(results_dir, updated_mpath_file, updated_gpath_file, iteration) 
 
+        GSM = GenomeSetsfromMimic(config)
+        #TODO: Get prefix from params
+        prefix = "Syncom"
+        
+        #TODO: ASk users if they want all genomes or just kneepoint genomes
+        mimicoutput = mcuinfo['mimicOutputName']
+        #genomesetlist, treelist = GSM.mimicoutput_to_allgenomesets(mimicoutput, prefix)
+        genomesetlist = GSM.mimicoutput_to_allgenomesets(mimicoutput, prefix)
+
+        created_objects = []
+
+        for count, genomeset in enumerate(genomesetlist):
+           created_objects.append({
+                   "ref": genomeset,
+                    "description": str(count)
+            }) 
+        #for count,species_tree in enumerate(treelist):
+        #   created_objects.append({
+        #           "ref": species_tree,
+        #            "description": str(count)
+        #    })
+
+ 
         created_objects=[]
         output = self.hr.formathtmlreport(results_dir,
                                             workspace,
                                             created_objects)
         print (output)
-        print (info)
+        print (mcuinfo)
         
         
 

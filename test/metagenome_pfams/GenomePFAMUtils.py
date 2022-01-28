@@ -53,9 +53,9 @@ class GenomePFAMUtils:
 
     def merged_pfam_workflow(self, metagenome_pfam_output_files, merged_pfam_output_file):
         all_pfam_counters = dict()
-        for file in metagenome_pfam_output_files:
-            all_pfam_counters[file] = self.get_counter_from_metagenome_pfam_output_file(file)
-
+        for file1 in metagenome_pfam_output_files:
+            filename = file1.split("/")[-1]
+            all_pfam_counters[filename] = self.get_counter_from_metagenome_pfam_output_file(file1)
         merged_all_obj_count = self.merge_counters(all_pfam_counters)
         df=pd.DataFrame(merged_all_obj_count)
  

@@ -13,7 +13,6 @@ from installed_clients.DataFileUtilClient import DataFileUtil
 import pandas as pd
 from collections import Counter
 
-
 class KBaseSynComTest(unittest.TestCase):
 
     @classmethod
@@ -54,7 +53,6 @@ class KBaseSynComTest(unittest.TestCase):
         if hasattr(cls, 'wsName'):
             cls.wsClient.delete_workspace({'workspace': cls.wsName})
             print('Test workspace was deleted')
-
     def test_runSyncom(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),
@@ -169,10 +167,11 @@ class KBaseSynComTest(unittest.TestCase):
          '63727/219/1',
          '63727/221/1',
          '63727/223/1']
-        ret = self.serviceImpl.run_KBaseSynCom(self.ctx, {'workspace_name':"pranjan77:narrative_1642294515776",
+        ret = self.serviceImpl.run_KBaseSynCom(self.ctx, {'workspace_name':"pranjan77:narrative_1643163998153",
                                                         'metagenome_pfam_annotation_files': metagenome_pfam_output_files,
                                                         'genome_domain_annotation_objects': domain_annotation_list,
                                                         'iteration':10})
         print (ret)
             
- 
+
+

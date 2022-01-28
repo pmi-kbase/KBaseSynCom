@@ -3,7 +3,15 @@
   "type" : "sdk",
   "version_tag" : "release"
 }, {
+  "module_name" : "kb_SetUtilities",
+  "type" : "sdk",
+  "version_tag" : "release"
+}, {
   "module_name" : "KBaseReport",
+  "type" : "sdk",
+  "version_tag" : "release"
+}, {
+  "module_name" : "SpeciesTreeBuilder",
   "type" : "sdk",
   "version_tag" : "release"
 }, {

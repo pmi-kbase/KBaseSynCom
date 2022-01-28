@@ -14,7 +14,8 @@ mimicOutputName=$5
 kneepointbasedOutputName=$6
 
 cd $resultdir
-Rscript --vanilla /kb/module/scripts/minimal_community.R \
+cp /kb/module/scripts/minimal_community.R $resultdir
+Rscript --vanilla minimal_community.R \
        -m $metagenomefileName \
        -g $genomeVectorFileName \
        -i $iteration  \
