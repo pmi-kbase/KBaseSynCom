@@ -17,6 +17,8 @@ elif [ "${1}" = "async" ] ; then
   sh ./scripts/run_async.sh
 elif [ "${1}" = "init" ] ; then
   echo "Initialize module"
+  cp -r /kb/module/data/cogs /data
+  touch /data/__READY__
 elif [ "${1}" = "bash" ] ; then
   bash
 elif [ "${1}" = "report" ] ; then

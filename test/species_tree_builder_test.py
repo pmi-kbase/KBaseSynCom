@@ -49,7 +49,7 @@ class MinimalCommunityInstallTest(unittest.TestCase):
          "nearest_genome_count": 20,
          "copy_genomes": 0,
          "out_tree_id":"species_tree123",
-         "out_genomeset_ref": "newgenomesetname123",
+         "out_genomeset_ref": "pranjan77:narrative_1643163998153/newgenomesetname123",
           "out_workspace": "pranjan77:narrative_1643163998153",
           "use_ribosomal_s9_only": 0
         }
