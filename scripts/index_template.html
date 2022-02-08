@@ -1,0 +1,60 @@
+<html>
+<head>
+<style> 
+            #leftbox {
+                float:left; 
+                width:33%;
+            }
+            #middlebox{
+                float:left; 
+                width:33%;
+            }
+            #rightbox{
+                float:right;
+                width:33%;
+            }
+            h1{
+                text-align:center;
+            }
+        </style>
+
+</head>
+
+<body>
+</br>
+</br>
+
+
+<div id = "boxes">
+            <div id = "leftbox">
+                <h2>Kneepoint output</h2>
+                 {{MIMICKNEEPOINTTABLE}}
+            </div> 
+              
+            <div id = "middlebox">
+                <h2>Coverage</h2>
+                <img src = "{{PFAMCOVERAGE}}" height=50%/>
+            </div>
+              
+            <div id = "rightbox">
+                <h2>Coverage with knee</h2>
+               <img src = "{{PFAMCOVERAGEKNEEPOINT}}" height = 50%/>
+            </div>
+        </div>
+
+<H2>Select metagenome to see the output </H2>
+<form name="change">
+<SELECT NAME="options" ONCHANGE="document.getElementById('youriframe').src = this.options[this.selectedIndex].value">
+{{DROPDOWNTABLE}}
+</SELECT>
+<div>
+<iframe name="iframe" id="youriframe" src="{{MYFIRSTPAGE}}" width=100% height=100%></iframe>
+</br>
+</br>
+</div>
+
+
+
+</body>
+</html>
+

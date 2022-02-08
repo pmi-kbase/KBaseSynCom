@@ -181,7 +181,7 @@
     	  geom_line()+
     	  geom_vline(xintercept = unique(df_W$kneepoint))+
     	  theme(legend.position = "none") # plot the knee point on 
-  ggsave("mbarc_mimic_coverage_ncbiRef_2016_kneePoint.pdf",plot=p2)
+  ggsave("Pfam_coverage_kneepoint.jpg",plot=p2)
   knee_point_summary <-  df_W %>% 
     dplyr::group_by(MetaGenome) %>% 
     dplyr::summarise(k=unique(kneepoint))

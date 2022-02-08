@@ -54,7 +54,7 @@ class KBaseSynComTest(unittest.TestCase):
             cls.wsClient.delete_workspace({'workspace': cls.wsName})
             print('Test workspace was deleted')
 
-    @unittest.skip('x')
+    #@unittest.skip('x')
     def test_runSyncom(self):
         # Prepare test objects in workspace if needed using
         # self.getWsClient().save_objects({'workspace': self.getWsName(),

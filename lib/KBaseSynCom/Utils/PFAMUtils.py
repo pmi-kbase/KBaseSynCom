@@ -77,6 +77,17 @@ class PFAMUtils:
         df.to_csv(merged_pfam_output_file, sep="\t", index_label="PfamID")
 
         return (merged_pfam_output_file)
+
+    def fix_name(self, id):
+       ids = id.split("/")
+       if (ids[0].isnumeric() and 
+          ids[1].isnumeric() and
+          ids[2].isnumeric()):
+          return id # most probably a workspace upa eg 61234/2/1
+       else:
+          return id.split ("/")[-1]  # for /kb/module/metagenome1 change to metagenome1
+
+       
         
     def get_updated_files_with_common_pfams(self, file1, file2, out1, out2):
         dfile1 = pd.read_csv(file1, sep='\t', index_col=0)
@@ -84,12 +95,24 @@ class PFAMUtils:
         dfile1_columns = dfile1.columns
         dfile2_columns = dfile2.columns
 
+        newdict1 = dict()
+        newdict2 = dict()
+        for j in dfile1_columns:
+            newdict1[j] = self.fix_name(j)
+        for j in dfile2_columns:
+            newdict2[j] = self.fix_name(j)
+
+
+
         merged_df = pd.concat([dfile1,dfile2], axis=1).fillna(0)
 
-        new_dfile1 = merged_df[dfile1_columns]
-        new_dfile2 = merged_df [dfile2_columns]
-        new_dfile1.to_csv(out1, sep="\t", index_label="PfamID")
-        new_dfile2.to_csv(out2, sep="\t", index_label="PfamID")
+        df1 = merged_df[dfile1_columns]
+        df1 = df1.rename(columns=newdict1)
+        df1.to_csv(out1, sep="\t", index_label="PfamID")
+        
+        df2 = merged_df [dfile2_columns]
+        df2 = df2.rename(columns=newdict2)
+        df2.to_csv(out2, sep="\t", index_label="PfamID")
         return (out1, out2)
 
 

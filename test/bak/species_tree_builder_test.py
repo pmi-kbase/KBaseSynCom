@@ -42,6 +42,8 @@ class MinimalCommunityInstallTest(unittest.TestCase):
       #  obj_id = (str(oi[0][6]) + "/" + str(oi[0][0]) + "/" + str(oi[0][4]))
 
       #  newgenomesetname = "species_tree_all_genomes-" + str(genomeset)
+
+        out_genomeset_ref = "pranjan77:narrative_1643163998153/newgenomesetname123"
   
         STB = SpeciesTreeBuilder(self.callback_url)
         params = {
@@ -49,7 +51,7 @@ class MinimalCommunityInstallTest(unittest.TestCase):
          "nearest_genome_count": 20,
          "copy_genomes": 0,
          "out_tree_id":"species_tree123",
-         "out_genomeset_ref": "newgenomesetname123",
+         "out_genomeset_ref": "63999/95/6",
           "out_workspace": "pranjan77:narrative_1643163998153",
           "use_ribosomal_s9_only": 0
         }
