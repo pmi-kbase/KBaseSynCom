@@ -65,7 +65,14 @@ class KBaseSynComTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methodsa
-        metagenome_pfam_output_files = ["/kb/module/test/metagenome_pfams/PMI_metgenome_1_PFAM", 
+
+
+
+        metagenome_pfam_output_files = ["/kb/module/test/metagenome_pfams/BESC-133_Co2_50_25_rhizosphere.pfam", 
+                                       "/kb/module/test/metagenome_pfams/BESC-847-Co3_34_soil.pfam",
+                                       "/kb/module/test/metagenome_pfams/BESC-Co2_50_25_rhizosphere.pfam",
+                                       "/kb/module/test/metagenome_pfams/BESC-133-Co3_19_46_soil.pfam",
+                                       "/kb/module/test/metagenome_pfams/BESC-847-Co3_9_34_rhizosphere.pfam",
                                        "/kb/module/test/metagenome_pfams/PMI_metgenome_2_PFAM"]
         #domain_annotation_list = ['63727/187/1', '63727/185/1', '63727/183/1']
         domain_annotation_list = ['63727/3/1',  '63727/5/1', '63727/7/1', '63727/9/1',
