@@ -137,7 +137,8 @@ class KBaseSynCom:
         prefix = "Syncom"
         
         #TODO: ASk users if they want all genomes or just kneepoint genomes
-        mimicoutput = mcuinfo['mimicOutputName']
+        #mimicoutput = mcuinfo['mimicOutputName']
+        mimicoutput = mcuinfo['kneepointbasedOutputName']
         #genomesetlist, treelist = GSM.mimicoutput_to_allgenomesets(mimicoutput, prefix)
         genomesetlist = GSM.mimicoutput_to_allgenomesets(mimicoutput, prefix)
 
