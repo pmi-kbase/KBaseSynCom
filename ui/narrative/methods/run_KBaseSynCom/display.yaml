@@ -40,9 +40,9 @@ parameters :
         ui-name : |
            iterations
         short-hint : |
-    to_delete :
+    domain_pattern :
         ui-name : |
-          genomeset
+          Domain Annotation Pattern
         short-hint : |
 
 

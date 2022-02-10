@@ -21,16 +21,43 @@
 				"dropdown_options": {
 					"options": [
 						{
+							"value": "/kb/module/test/metagenome_pfams/BESC-133_Co2_50_25_rhizosphere.pfam",
+							"display": "BESC-133_Co2_50_25_rhizosphere.pfam",
+					    	"id": "BESC-133_Co2_50_25_rhizosphere.pfam",
+							"ui-name": "BESC-133_Co2_50_25_rhizosphere.pfam"
+						},
+
+						{
+							"value": "/kb/module/test/metagenome_pfams/BESC-Co2_50_25_rhizosphere.pfam",
+							"display": "BESC-Co2_50_25_rhizosphere.pfam",
+					    	"id": "BESC-Co2_50_25_rhizosphere.pfam",
+							"ui-name": "BESC-Co2_50_25_rhizosphere.pfam"
+						},
+						{
+							"value": "/kb/module/test/metagenome_pfams/BESC-847-Co3_34_soil.pfam",
+							"display": "BESC-847-Co3_34_soil.pfam",
+					    	"id": "BESC-847-Co3_34_soil.pfam",
+							"ui-name": "BESC-847-Co3_34_soil.pfam"
+						},
+
+						{
+							"value": "/kb/module/test/metagenome_pfams/BESC-847-Co3_9_34_rhizosphere.pfam",
+							"display": "BESC-847-Co3_9_34_rhizosphere.pfam",
+					    	"id": "BESC-847-Co3_9_34_rhizosphere.pfam",
+							"ui-name": "BESC-847-Co3_9_34_rhizosphere.pfam"
+						},
+
+						{
+							"value": "/kb/module/test/metagenome_pfams/BESC-133-Co3_19_46_soil.pfam",
+							"display": "BESC-133-Co3_19_46_soil.pfam",
+							"id": "BESC-133-Co3_19_46_soil.pfam",
+							"ui-name": "BESC-133-Co3_19_46_soil.pfam"
+						},
+                        {
 							"value": "/kb/module/test/metagenome_pfams/PMI_metgenome_1_PFAM",
 							"display": "PMI_metgenome_1_PFAM",
 					    	"id": "PMI_metgenome_1_PFAM",
 							"ui-name": "PMI_metgenome_1_PFAM"
-						},
-						{
-							"value": "/kb/module/test/metagenome_pfams/PMI_metgenome_2_PFAM",
-							"display": "PMI_metgenome_2_PFAM",
-							"id": "PMI_metgenome_2_PFAM",
-							"ui-name": "PMI_metgenome_2_PFAM"
 						}
 					]
 				}
@@ -46,18 +73,18 @@
                 "valid_ws_types": [ "KBaseGeneFamilies.DomainAnnotation" ]
             }
         },
-    
-        {
-            "id": "to_delete",
-            "optional": false,
+         {
+           "id": "domain_pattern",
+            "optional": true,
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ "KBaseSearch.GenomeSet" ]
+            "field_type": "textarea",
+            "textarea_options" : {
+                 "n_rows" : 10
             }
         },
+
 
       {
 	    "id": "iteration",
@@ -87,15 +114,12 @@
                     "target_property": "workspace_id"
                 },
                 
-          {"input_parameter": "to_delete",
-          "generated_value": {
-            "prefix": "genomeset_"
-          },
-          "target_property": "genomeset_ref",
-          "target_type_transform": "ref"
-        },
-
+               {
+                    "input_parameter": "domain_pattern",
+                    "target_property": "domain_pattern"
+                },
                 {
+
                     "input_parameter": "metagenome_pfam_annotation_files",
                     "target_property": "metagenome_pfam_annotation_files"
                 },{

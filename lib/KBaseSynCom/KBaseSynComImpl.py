@@ -2,13 +2,14 @@
 #BEGIN_HEADER
 import logging
 import os
-
+import re
 from installed_clients.KBaseReportClient import KBaseReport
 from .Utils.PFAMUtils import PFAMUtils
 from .Utils.MinimalCommunityUtils import MinimalCommunityUtils
 from .Utils.htmlreportutils import htmlreportutils
 from .Utils.GenomeSetsfromMimic import GenomeSetsfromMimic
 import uuid
+from installed_clients.WorkspaceClient import Workspace
 #END_HEADER
 
 
@@ -32,6 +33,7 @@ class KBaseSynCom:
     GIT_COMMIT_HASH = ""
 
     #BEGIN_CLASS_HEADER
+
     #END_CLASS_HEADER
 
     # config contains contents of config file in a hash or None if it couldn't
@@ -63,8 +65,41 @@ class KBaseSynCom:
       
         print (params) 
         metagenome_pfam_annotation_file_list = params['metagenome_pfam_annotation_files']
-        genome_domain_annotation_object_list = params['genome_domain_annotation_objects']
+        gd_object_list = params['genome_domain_annotation_objects']
         iteration = str(params['iteration'])
+        domain_pattern = params['domain_pattern']
+        patterns = domain_pattern.split("\n")
+
+        #Get all genome domain annotation in the workspace
+
+        #TODO: Make a function
+        obj_type = "KBaseGeneFamilies.DomainAnnotation"
+        workspace_id = params['workspace_id']
+        genome_domain_annotation_object_list = list() 
+        ws = Workspace(self.ws_url)
+        objects = ws.list_objects({"ids": [workspace_id], "type":obj_type})
+        selected_objects = gd_object_list
+        d = dict()
+        
+        for obj in objects:
+            for p in patterns:
+                p_a = '.*' + p + '.*'
+                match = re.findall(p_a, obj[1])
+                if (len(match)!=0):
+                    obj_ref = str(obj[6]) + "/" + str(obj[0]) + "/" + str(obj[4])
+                    d[obj_ref]=1
+        for obj_ref in selected_objects:
+            d[obj_ref] = 1
+
+        for gdobj in d:
+            genome_domain_annotation_object_list.append(gdobj)
+
+        print ("Final input list of domain annotation objects")
+        print (genome_domain_annotation_object_list)
+
+
+
+
         #TODO: change randomname to uui
         results_dir = os.path.join(self.shared_folder, str(uuid.uuid4()))
 
