@@ -46,7 +46,9 @@ class KBaseSynCom:
                             level=logging.INFO)
   
         self.ws_url = config['workspace-url']
-        self.hr = htmlreportutils()
+        config1={"ws_url": self.ws_url,
+               'kbase_endpoint':config['kbase-endpoint']}
+        self.hr = htmlreportutils(config1)
 
         #END_CONSTRUCTOR
         pass

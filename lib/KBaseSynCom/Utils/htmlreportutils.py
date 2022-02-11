@@ -12,10 +12,13 @@ import sys
 
 class htmlreportutils:
 
-    def __init__(self):
+    def __init__(self, config):
         callback_url = os.environ['SDK_CALLBACK_URL']
         self.dfu = DataFileUtil(callback_url)
         self.report = KBaseReport(callback_url)
+        ws_url = config['ws_url']
+        self.ws = Workspace(ws_url)
+        self.kbase_endpoint = config['kbase_endpoint'].replace("/services", "")
         self.first_drop_down_page = ""
         pass
 
@@ -87,6 +90,35 @@ class htmlreportutils:
        htmlstr += "</table>"
        return (htmlstr)
 
+    def domainannotation_to_genome(self, domainannotation):
+        genome = self.ws.get_object_subset([{
+           'included': ['/genome_ref'],
+            'ref': domainannotation
+            }])[0]['data']['genome_ref']
+
+        return genome
+
+    def get_genome_to_name(self, genome_ref):
+       genome_name = self.ws.get_object_info3({"objects": [{'ref':genome_ref}], "includeMetadata": 1})['infos'][0][1]
+       return (genome_name)
+
+    def get_object_to_name(self, obj):
+       obj_name = self.ws.get_object_info3({"objects": [{'ref':obj}], "includeMetadata": 1})['infos'][0][1]
+       return (obj_name)
+
+
+    def update_upa_with_genome_name(self, line):
+        d = line.split("\t")
+        domainannotation = d[1]
+#        genome_ref = self.domainannotation_to_genome(domainannotation)
+#        genome_url = self.kbase_endpoint + "/#dataview/" + genome_ref
+        durl = self.kbase_endpoint + "/#dataview/" + domainannotation
+#        genome_name = self.get_genome_to_name(genome_ref)
+        obj_name = self.get_object_to_name(domainannotation)
+        d[1] = "<a href ='" + durl  + "' target='_blank' >" + obj_name + "</a>" 
+        newline = "\t".join(d)
+        return (newline)
+        
     def create_drop_down_table(self, metagenome_dict):
        htmlstr = ""
        firstpage = ""
@@ -110,10 +142,11 @@ class htmlreportutils:
         for line in lines:
            if firstline:
                metagenome_id = line.split("\t")[0]
+               nline = self.update_upa_with_genome_name(line)
                if metagenome_id in metagenome_dict:
-                   metagenome_dict[metagenome_id] = metagenome_dict[metagenome_id] + self.tab_to_td(line)
+                   metagenome_dict[metagenome_id] = metagenome_dict[metagenome_id] + self.tab_to_td(nline)
                else:
-                   metagenome_dict[metagenome_id] = self.tab_to_td(line)
+                   metagenome_dict[metagenome_id] = self.tab_to_td(nline)
            else:
                firstline = self.tab_to_td(line)
 
